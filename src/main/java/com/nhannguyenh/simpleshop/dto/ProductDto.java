@@ -1,10 +1,14 @@
 package com.nhannguyenh.simpleshop.dto;
 
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
 
 import java.time.ZonedDateTime;
 
 @Builder
+@Getter
+@AllArgsConstructor
 public class ProductDto {
     private Long id;
     private String name;
