@@ -1,0 +1,12 @@
+spring:
+    application:
+        name: Simple Shop
+    datasource:
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://localhost:5432/simpleshop
+        username: admin
+        password: password
+    jpa:
+        hibernate:
+            ddl-auto: update
+        show-sql: true
