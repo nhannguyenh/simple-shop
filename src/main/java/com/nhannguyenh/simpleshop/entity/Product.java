@@ -1,15 +1,17 @@
-package com.nhannguyenh.simpleshop.model;
+package com.nhannguyenh.simpleshop.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "products")
 @Builder
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Product {
@@ -23,6 +25,6 @@ public class Product {
     private String sku;
     private String createdBy;
     private ZonedDateTime createdOn;
-    private String modifedBy;
-    private ZonedDateTime modidiedOn;
+    private String modifiedBy;
+    private ZonedDateTime modifiedOn;
 }

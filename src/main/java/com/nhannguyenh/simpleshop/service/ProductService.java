@@ -1,8 +1,8 @@
 package com.nhannguyenh.simpleshop.service;
 
 import com.nhannguyenh.simpleshop.dto.ProductDto;
+import com.nhannguyenh.simpleshop.entity.Product;
 import com.nhannguyenh.simpleshop.mapper.ProductMapper;
-import com.nhannguyenh.simpleshop.model.Product;
 import com.nhannguyenh.simpleshop.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
@@ -29,8 +29,7 @@ public class ProductService {
     }
 
     public Product createProduct(ProductDto productDto) {
-        Product inputProduct = ProductMapper.mapToProduct(productDto);
-        return productRepository.save(inputProduct);
+        return productRepository.save(ProductMapper.mapToProduct(productDto));
     }
 
 }

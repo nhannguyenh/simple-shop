@@ -1,7 +1,7 @@
 package com.nhannguyenh.simpleshop.mapper;
 
 import com.nhannguyenh.simpleshop.dto.ProductDto;
-import com.nhannguyenh.simpleshop.model.Product;
+import com.nhannguyenh.simpleshop.entity.Product;
 
 public class ProductMapper {
 
@@ -14,8 +14,8 @@ public class ProductMapper {
                 .sku(product.getSku())
                 .createdBy(product.getCreatedBy())
                 .createdOn(product.getCreatedOn())
-                .modifiedBy(product.getModifedBy())
-                .modifiedOn(product.getModidiedOn())
+                .modifiedBy(product.getModifiedBy())
+                .modifiedOn(product.getModifiedOn())
                 .build();
     }
 
@@ -28,8 +28,8 @@ public class ProductMapper {
                 .sku(productDto.sku())
                 .createdBy(productDto.createdBy())
                 .createdOn(productDto.createdOn())
-                .modifedBy(productDto.modifiedBy())
-                .modidiedOn(productDto.modifiedOn())
+                .modifiedBy(productDto.modifiedBy())
+                .modifiedOn(productDto.modifiedOn())
                 .build();
     }
 }

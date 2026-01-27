@@ -1,7 +1,7 @@
 package com.nhannguyenh.simpleshop.controller;
 
 import com.nhannguyenh.simpleshop.dto.ProductDto;
-import com.nhannguyenh.simpleshop.model.Product;
+import com.nhannguyenh.simpleshop.entity.Product;
 import com.nhannguyenh.simpleshop.service.ProductService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
