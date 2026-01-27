@@ -21,15 +21,15 @@ public class ProductMapper {
 
     public static Product mapToProduct(ProductDto productDto) {
         return Product.builder()
-                .id(productDto.getId())
-                .name(productDto.getName())
-                .description(productDto.getDescription())
-                .price(productDto.getPrice())
-                .sku(productDto.getSku())
-                .createdBy(productDto.getCreatedBy())
-                .createdOn(productDto.getCreatedOn())
-                .modifedBy(productDto.getModifiedBy())
-                .modidiedOn(productDto.getModifiedOn())
+                .id(productDto.id())
+                .name(productDto.name())
+                .description(productDto.description())
+                .price(productDto.price())
+                .sku(productDto.sku())
+                .createdBy(productDto.createdBy())
+                .createdOn(productDto.createdOn())
+                .modifedBy(productDto.modifiedBy())
+                .modidiedOn(productDto.modifiedOn())
                 .build();
     }
 }
