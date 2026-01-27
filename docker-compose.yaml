@@ -1,0 +1,15 @@
+services:
+  postgres_db:
+    image: postgres:15
+    container_name: simpleshop_db
+    environment:
+      POSTGRES_DB: simpleshop
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+volumes:
+  postgres-data:
+    name: simpleshop_data
