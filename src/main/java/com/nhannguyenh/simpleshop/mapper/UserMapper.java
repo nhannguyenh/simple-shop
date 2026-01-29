@@ -1,6 +1,7 @@
 package com.nhannguyenh.simpleshop.mapper;
 
 import com.nhannguyenh.simpleshop.dto.UserDto;
+import com.nhannguyenh.simpleshop.entity.Role;
 import com.nhannguyenh.simpleshop.entity.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,6 +16,7 @@ public class UserMapper {
         return User.builder()
                 .email(userDto.getEmail())
                 .password(passwordEncoder.encode(userDto.getPassword()))
+                .role(Role.USER)
                 .build();
     }
 }

@@ -5,13 +5,11 @@ import com.nhannguyenh.simpleshop.entity.User;
 import com.nhannguyenh.simpleshop.mapper.UserMapper;
 import com.nhannguyenh.simpleshop.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
 @Service
-@Slf4j
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepository userRepository;
@@ -20,8 +18,7 @@ public class UserService {
     public User saveUser(UserDto userDto) {
         Optional<User> user = userRepository.findByEmail(userDto.getEmail());
         if (user.isPresent()) {
-            log.warn("Email " + userDto.getEmail() + " is existed");
-            return user.get();
+            throw new IllegalArgumentException(String.format("Email: %s is existed", userDto.getEmail()));
         }
         return userRepository.save(userMapper.mapToUser(userDto));
     }
