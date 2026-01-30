@@ -6,6 +6,7 @@ import com.nhannguyenh.simpleshop.dto.UserDto;
 import com.nhannguyenh.simpleshop.entity.User;
 import com.nhannguyenh.simpleshop.service.AuthenticationService;
 import com.nhannguyenh.simpleshop.service.UserService;
+import com.nhannguyenh.simpleshop.utils.JwtUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class AuthController {
     private final AuthenticationService authenticationService;
+    private final JwtUtils jwtUtils;
     private final UserService userService;
 
     @PostMapping("/login")
@@ -28,7 +30,7 @@ public class AuthController {
                 loginRequest.getEmail(),
                 loginRequest.getPassword()
         );
-        String token = authenticationService.generateToken(userDetails);
+        String token = jwtUtils.generateToken(userDetails);
         AuthResponse authResponse = AuthResponse.builder()
                 .token(token)
                 .expiresIn(3600000)

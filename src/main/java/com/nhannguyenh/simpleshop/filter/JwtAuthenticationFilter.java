@@ -1,7 +1,7 @@
 package com.nhannguyenh.simpleshop.filter;
 
 import com.nhannguyenh.simpleshop.dto.SimpleShopUserDetails;
-import com.nhannguyenh.simpleshop.service.AuthenticationService;
+import com.nhannguyenh.simpleshop.utils.JwtUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,16 +21,16 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
-    private final AuthenticationService authenticationService;
+    private final JwtUtils jwtUtils;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
         try {
-            String token = extractToken(request);
+            String token = jwtUtils.extractToken(request);
             if (Objects.nonNull(token)) {
-                UserDetails userDetails = authenticationService.validateToken(token);
+                UserDetails userDetails = jwtUtils.validateToken(token);
                 UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
                         userDetails,
                         null,
@@ -46,13 +46,5 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             log.warn("Received invalid auth token", e);
         }
         filterChain.doFilter(request, response);
-    }
-
-    private String extractToken(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (Objects.nonNull(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7);
-        }
-        return null;
     }
 }
