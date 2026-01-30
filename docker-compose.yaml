@@ -1,15 +1,32 @@
 services:
+  simple_shop_server:
+    build:
+      context: . # build from current directory
+    image: simple-shop:0.0.1-SNAPSHOT
+    container_name: simple_shop_server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres_db
+    networks:
+      - simple-shop-network
   postgres_db:
     image: postgres:15
     container_name: simpleshop_db
     environment:
-      POSTGRES_DB: simpleshop
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_USER}
     ports:
       - "5432:5432"
     volumes:
       - postgres-data:/var/lib/postgresql/data
+    networks:
+      - simple-shop-network
 volumes:
   postgres-data:
     name: simpleshop_data
+networks:
+  simple-shop-network:
+    driver: bridge
+    name: simple-shop-network
